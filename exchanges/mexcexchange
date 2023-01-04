@@ -1,0 +1,56 @@
+#In The Creator Of Money | به نام آن که پول را آفرید
+
+from mexc_sdk.src.mexc_sdk import Spot
+
+import time
+import datetime
+
+from ini import ini
+from threading import Timer
+
+class mexc_exchange:
+    def __init__(self, time_to_buy, coin_name, funds, sell_at):
+        self.time_to_buy = time_to_buy,
+        self.coin_name = coin_name
+        self.funds = funds
+        self.sell_at = sell_at
+
+        self.options = ini.configs()
+
+        self.client = Spot(api_key=self.options['MEXC_KEY'], api_secret=self.options['MEXC_SECRET'])
+
+        now_date = datetime.datetime.now()
+        now = datetime.datetime(now_date.year, now_date.month, now_date.day, now_date.hour, now_date.minute,now_date.second)
+
+        target = datetime.datetime(int(time_to_buy[0]), int(time_to_buy[1]), int(time_to_buy[2]), int(time_to_buy[3]),
+                                   int(time_to_buy[4]), int(time_to_buy[5]))
+
+        remaning_time = (target - now).total_seconds()
+        print("Waiting For Time " + str(remaning_time))
+
+        self.start(remaning_time)
+
+    def buy(self):
+        print("Ready For Buy , In The Name Of Creator Of Money")
+
+        res = self.client.new_order(symbol=self.coin_name, side="BUY", order_type="MARKET", options={"quoteOrderQty": self.funds})
+
+        print(f"Buy Order Created ! OrderId : {res['orderId']} , Price : {res['price']} , Value : {res['origQty']} , At : {res['transactTime']}")
+        print(f"Wating For Sell Time {self.sell_at} Seconds")
+
+        time.sleep(self.sell_at)
+
+        self.sell(res['origQty'])
+
+    def sell(self , size):
+        print("ready for sell. in the creator of money")
+
+        res = self.client.new_order(symbol=self.coin_name, side="SELL", order_type="MARKET", options={"quantity": size})
+
+        print(f"Sell Order Created ! OrderId : {res['orderId']} , Price : {res['price']} , Value : {res['origQty']} , At : {res['transactTime']}")
+
+    def start(self ,remaning):
+        print("Starting Application , In The Name Of Creator Of Money")
+
+        timer = Timer(remaning, self.buy)
+        timer.start()
