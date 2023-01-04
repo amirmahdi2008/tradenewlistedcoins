@@ -10,6 +10,7 @@ If you buy the currency exactly when it is listed and sell it less than a minute
 It is better to entrust this work to this robot so that it buys and sells at the appointed time.
 
 > [Kucoin New Listing](https://www.kucoin.com/news/categories/listing)
+
 > [Mexc New Listing](https://support.mexc.com/hc/en-001/sections/360000547811-New-Listings)
 
 With the help of this robot, you can buy and sell newly listed currencies in Kucoin and Mexc exchanges.
