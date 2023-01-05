@@ -38,3 +38,15 @@ Using :
 > Be careful, make sure to use a high-speed internet and make the settings of the robot several minutes before the new currency is listed.
 
 >If you changed config.ini, you need to close and re-run main.py for the robot to apply the changes.
+
+### Versions :
+#### Initial version 1
+* Ability to set the time for buying and selling automatically
+* Notification for purchases and sales
+* Support for kucoin and mexc exchanges
+* Support for spot transactions
+* This version requires Kucoin and Mexc exchange API SDKs to run.
+
+#### Changes in later versions:
+* Support more exchanges
+* Futures trading support
